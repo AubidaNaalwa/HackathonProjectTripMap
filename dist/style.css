@@ -1,3 +1,55 @@
-body{
-    background-color: rebeccapurple;
+#teacher{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap: 10px;
 }
+
+
+
+#mapid 
+{
+
+    margin-top: 10px;
+    font-size: 1.5vmax;
+    border-radius: 4px;
+    box-shadow: -1px -1px 3px black;
+    padding-left: 1vmax;
+   
+}
+
+#options{
+    display: grid;
+    grid-template-columns: 1fr fr;
+    margin-top: 10px;
+    font-size: 1vmax;
+    border-radius: 4px;
+    box-shadow: -1px -1px 3px black;
+    padding-left: 1vmax;
+    transition: 0.4s;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #teacher {
+        /* display: grid; */
+        grid-template-rows: 1fr 3fr;
+        grid-template-columns: none;
+    }
+
+}
+
+.addStudent{
+    background-color: rgb(173, 173, 173);
+    display: inline-block;
+}
+
+#submit-student{
+    background-color: rgb(83, 155, 83);
+    border-color: rgb(54, 107, 54);
+    box-shadow: 1px;
+}
+
+
+
+

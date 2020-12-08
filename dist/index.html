@@ -1,22 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>     
     <meta charset="UTF-8">
-    <title>School Map app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logIn</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+ 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="teacher">
+        <div id="options">
+
+            <div id="addClass">ADD CLASS</div>
+            <div id="addTrip">ADD TRIP</div>
+            <div id="deleteTrip">DELETE TRIP</div>
+            <div id="Emergency">EMERGENCY</div>
+            <div id="EndTrip">END TRIP</div>
+            <div id="addStudent">ADD STUDENT</div>
+            <div id="removeStudent">REMOVE STUDENT</div>
+
+        </div>
+
+
+        <div id="mapid"></div>
+    </div>  
     
+    <div id="content">
+
+        <div class="classInfo">
+                <input type="text" id="className" placeholder="Class Name">
+                <button id='classButton'>SUBMIT</button>
+        </div>
+
+        <div class="emergencyInfo">
+            <input type="text" id="emergencyText" placeholder="What's your emergency?">
+            <button id='emergencyButton'>SUBMIT</button>
+        </div>
+
+        <div class="addStudent">
+        
+            <div class="prompt">Name:</div>
+            <input type="text" placeholder="student name">
+            <div class="prompt">Age:</div>
+            <input type="number" placeholder="student age">
+            <div class="prompt">Id:</div>
+            <input type="text" placeholder="student id">
+            <div class="prompt">email</div>
+            <input type="text" placeholder="student email">
+            <div class="prompt">phoneNumber</div>
+            <input type="number" placeholder="student phone Number">
+            <div class="prompt">classRoom</div>
+            <input type="text" placeholder="student classRoom">
+            <div class="prompt">parent phoneNumber</div>
+            <input type="number" placeholder="student parent phone Number">
+            <div class="prompt">parent email</div>
+            <input type="text" placeholder="student parent email">
+
+            <button id='submit-student'>SUBMIT</button>
+        </div>
+
+     
 
 
 
-    <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="Model.js"></script>
-    <script src="Renderer.js"></script>
+        
+
+
+
+
+      
+
+    </div>
+
+    <!-- handlebars -->
+    <script id="addClass-template" type="text/x-handlebars-template">
+        {{#each data}}
+            <div class='class'>
+                <div class='playerName'>{{firstName}} {{lastName}}</div>
+                <img onerror="standby(this)" src="{{img}}" class='playerImg'>
+                <div class='jersey'>{{jersey}}</div>
+                <div class='pos'>{{pos}}</div>
+            </div>    
+        {{/each}}
+    </script>
+
+
+    
     <script src="main.js"></script>
-    
 </body>
 </html>
