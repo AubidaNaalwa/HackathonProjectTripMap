@@ -274,7 +274,7 @@ function loadThePage() {
     // load the map if he have a map on his name
      const loadingStatus = checkLocalStorageData()
      if(!loadingStatus.username || !loadingStatus.isLoggedIn){
-         // go to the logIn page
+         renderer.loadLogInPage()
          return
      }
      if(status){
