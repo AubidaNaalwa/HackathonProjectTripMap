@@ -11,33 +11,21 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
-
-
 // Events
 
 const model = new Model()
 const renderer = new Renderer()
 
 
-const post = function(){
-        navigator.geolocation.getCurrentPosition(function(position) {
-            let lat = position.coords.latitude;
-            let long = position.coords.longitude;
+const post = function () {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
         const text = $('#postText').val()
         var marker = L.marker([lat, long]).addTo(mymap);
         marker.bindPopup(`<b>${text}</b>`).openPopup();
     })
 }
-
-
-var popup = L.popup();
-
-        mymap.on('click', function(e){
-            popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(mymap);
-        });
 
 
 $('#classButton').on('click', async function () {
@@ -61,7 +49,7 @@ $('#emergencyButton').on('click', async function () {
         return
     }
     const trip = "" // get the field of the trip
-    model.emergencySituation(emergencyText,trip)
+    model.emergencySituation(emergencyText, trip)
     alert('emergency sent')
     $("#emergencyText").val("")
 })
@@ -99,67 +87,63 @@ function checkFullAttributes(obj) {
 
 
 let flagClass = 0
-const addClass= function(){
-    if(flagClass == 0 )
-       {
-           renderer.addClass()
-           flagClass = 1   
-    }else {
+const addClass = function () {
+    if (flagClass == 0) {
+        renderer.addClass()
+        flagClass = 1
+    } else {
         renderer.hideAddClass()
         flagClass = 0
     }
 }
 
 let flagStudent = 0
-const removeStudent= function(){
-    if(flagStudent == 0 )
-       {
-           renderer.removeStudent()
-           flagStudent = 1   
-    }else {
+const removeStudent = function () {
+    if (flagStudent == 0) {
+        renderer.removeStudent()
+        flagStudent = 1
+    } else {
         renderer.hideStudent()
         flagStudent = 0
     }
 }
 
 let flagEmergency = 0
-const emergency= function(){
-    if(flagEmergency == 0 )
-       {
-           renderer.emergency()
-           flagEmergency = 1   
-    }else {
+const emergency = function () {
+    if (flagEmergency == 0) {
+        renderer.emergency()
+        flagEmergency = 1
+    } else {
         renderer.hideEmergency()
         flagEmergency = 0
     }
-}  
+}
 
 
 
 let flagPost = 0
-const addPost = function(){
-    if(flagPost == 0 )
-       {
-           renderer.addPost()
-           flagPost = 1   
-    }else {
+const addPost = function () {
+    if (flagPost == 0) {
+        renderer.addPost()
+        flagPost = 1
+    } else {
         renderer.hidePost()
         flagPost = 0
     }
-}  
+}
 
 
 
-const switchdiv = function(){
+const switchdiv = function () {
     renderer.switchdiv()
-    
-}  
 
-const hideAddClass = function(){
+}
+
+const hideAddClass = function () {
     renderer.hideAddClass()
 }
 
-const hideEmergency = function(){
+const hideEmergency = function () {
     renderer.hideEmergency()
 }
 
@@ -204,7 +188,7 @@ $('#sendbtn').on('click', function () {
         classRooms: []
     })
 
-  
+
 })
 
 let points = []
@@ -239,11 +223,11 @@ function showCheckboxes() {
         checkboxes.style.display = "block";
         expanded = true;
     } else {
-            checkboxes.style.display = "none";
-            expanded = false;
-        }
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
 }
-            
+
 
 $('#logInSubmit').on('click', async function () {
     const username = $('#user').val()
@@ -260,11 +244,11 @@ $('#logInSubmit').on('click', async function () {
 })
 
 
-function checkLocalStorageData(){
+function checkLocalStorageData() {
     return {
-        username :localStorage.getItem('UserName'),
-        status :  localStorage.getItem('status'),
-        isLoggedIn :  localStorage.getItem('isLoggedIn')
+        username: localStorage.getItem('UserName'),
+        status: localStorage.getItem('status'),
+        isLoggedIn: localStorage.getItem('isLoggedIn')
     }
 }
 
@@ -272,13 +256,18 @@ function checkLocalStorageData(){
 function loadThePage() {
     // userLoad from localStorage
     // load the map if he have a map on his name
-     const loadingStatus = checkLocalStorageData()
-     if(!loadingStatus.username || !loadingStatus.isLoggedIn){
-         renderer.loadLogInPage()
-         return
-     }
-     if(status){
-         // loadMap
-     }
-     // load main map with  logged in as a existing user
+    const loadingStatus = checkLocalStorageData()
+    if (!loadingStatus.username || !loadingStatus.isLoggedIn) {
+        renderer.loadLogInPage()
+        return
+    }
+    else if (loadingStatus.status == 2) {
+        // loadMap for the teacher 
+        renderer.loadstudentPage()
+        return
+    }else  if (loadingStatus.status == 1){
+        // load Student 
+        renderer.loadteacherPage()
+    }
+    // load main map with  logged in as a existing user
 }

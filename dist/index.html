@@ -2,31 +2,39 @@
 <html lang="en">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+        integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
+        crossorigin="anonymous"></script>
+
+      
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+ 
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>logIn</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
-        integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
     <link rel="stylesheet" href="logIn.css">
+    <link rel="stylesheet" href="style.css">
+
+
 
 </head>
 
+<body onload="loadThePage()">
 
-<script id="logIn-template" type="text/x-handlebars-template">
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -80,86 +88,88 @@
                 </div>
             </div>
         </div>
-    </div>   
-</script>
-
-
+    </div> 
+    
     <div id="teacher">
-        <div id="options">
-            <script id="Student-template" type="text/x-handlebars-template">
-                <div id="addPost" class="add">
-                    <div id="posting" onclick="addPost()">Add Post</div>
-                    <div class="info"  id="addingpost" style="display: none;">
-                        <input type="text" class="inpt" id="postText" placeholder="Write Your Post ... ">
-                        <button id='submit' onclick="post()">POST</button>
-                </div>
-                </div>
-                
-                <div id="logOut" class="add">
-                   <a href="logIn.html" ><div id="logOutStudent" class="add">Log Out</div></a> 
-                </div>
-            </script>
-            <script id="Teacher-template" type="text/x-handlebars-template">
-                <div class="add" id="addClass">
-                    <div id="addClass" onclick="addClass()">ADD CLASS</div>
-                    <div class="info" id="classInfo" style = "display:none">
-                        <input class="inpt" type="text" class="className" placeholder="Class Name">
-                        <button id='submit'>SUBMIT</button>
-                    </div>
-    
-                </div>
-    
-    
-                <div class="add" id="addTrip">
-                    <div id="addTrip" onclick="switchdiv()">ADD TRIP</div>
-                </div>
-    
-                <div class="add" id="saveTrip" style="display: none";><a href="saveTrip.html" target="_blanck">SAVE</a></div>
-                
-    
-                <div id="deleteTrip" class="add">
-                    <div id="addTrip">DELETE TRIP</div>
-                </div>
-    
-    
-                <div id="emergency" class="add">
-                    <div  onclick="emergency()">EMERGENCY</div>
-                    <div class="info"  id="emergencyInfo" style="display: none;">
-                        <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
-                        <button id='submit'>SEND</button>
-                    </div>
-                </div>
-    
-    
-                <div id="EndTrip" class="add">
-                    <div id="end">END TRIP</div>
-                </div>
-    
-    
-    
-    
-                <a href="content.html" class="add" target="_blanck">
-                    <div id="addStudent">ADD STUDENT</div>
-                </a>
-    
-    
-                <div class="add" id="removeStudent">
-                    <div id="remove" onclick="removeStudent()">REMOVE STUDENT</div>
-                    <div class="info" id="studentInfo" style = "display:none">
-                        <input class="inpt" type="text" class="studentId" placeholder="Student id">
-                        <button id='submit'>REMOVE</button>
-                    </div>
-    
-                </div>
-    
-            
-            </script>
-        </div>
+        <div id="options"></div>
         <div id="mapid"></div>
     </div>
+
+    <script id="options-template" type="text/x-handlebars-template">  
+        {{#if flag}} 
+            <div id="addPost" class="add">
+                <div id="posting" onclick="addPost()">Add Post</div>
+                <div class="info"  id="addingpost" style="display: none;">
+                    <input type="text" class="inpt" id="postText" placeholder="Write Your Post ... ">
+                    <button id='submit' onclick="post()">POST</button>
+            </div>
+            </div>
+            
+            <div id="logOut" class="add">
+            <a href="logIn.html" ><div id="logOutStudent" class="add">Log Out</div></a> 
+            </div>
+        {{else}}
+
+        <div class="add" id="addClass">
+            <div id="addClass" onclick="addClass()">ADD CLASS</div>
+            <div class="info" id="classInfo" style = "display:none">
+                <input class="inpt" type="text" class="className" placeholder="Class Name">
+                <button id='submit'>SUBMIT</button>
+            </div>
+
+        </div>
+
+
+        <div class="add" id="addTrip">
+            <div id="addTrip" onclick="switchdiv()">ADD TRIP</div>
+        </div>
+
+        <div class="add" id="saveTrip" style="display: none";><a href="submitTrip/saveTrip.html" target="_blanck">SAVE</a></div>
+        
+
+        <div id="deleteTrip" class="add">
+            <div id="addTrip">DELETE TRIP</div>
+        </div>
+
+
+        <div id="emergency" class="add">
+            <div  onclick="emergency()">EMERGENCY</div>
+            <div class="info"  id="emergencyInfo" style="display: none;">
+                <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
+                <button id='submit'>SEND</button>
+            </div>
+        </div>
+
+
+        <div id="EndTrip" class="add">
+            <div id="end">END TRIP</div>
+        </div>
+
+
+
+
+        <a href="content.html" class="add" target="_blanck">
+            <div id="addStudent">ADD STUDENT</div>
+        </a>
+
+
+        <div class="add" id="removeStudent">
+            <div id="remove" onclick="removeStudent()">REMOVE STUDENT</div>
+            <div class="info" id="studentInfo" style = "display:none">
+                <input class="inpt" type="text" class="studentId" placeholder="Student id">
+                <button id='submit'>REMOVE</button>
+            </div>
+
+        </div>
+
+        {{/if}}
+    </script>
+
     <script src="Model.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>
 </body>
 
 </html>
+
+
