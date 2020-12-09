@@ -18,8 +18,14 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
  
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div id="teacher">
@@ -54,21 +60,21 @@
         <div class="addStudent">
         
             <div class="prompt">Name:</div>
-            <input type="text" placeholder="student name">
+            <input id ="studentNameText" type="text" placeholder="student name">
             <div class="prompt">Age:</div>
-            <input type="number" placeholder="student age">
+            <input id ="ageText" type="number" placeholder="student age">
             <div class="prompt">Id:</div>
-            <input type="text" placeholder="student id">
+            <input id ="idText"type="text" placeholder="student id">
             <div class="prompt">email</div>
-            <input type="text" placeholder="student email">
+            <input id= "mailStudentText" type="text" placeholder="student email">
             <div class="prompt">phoneNumber</div>
-            <input type="number" placeholder="student phone Number">
+            <input id= "phoneStudentText" type="number" placeholder="student phone Number">
             <div class="prompt">classRoom</div>
-            <input type="text" placeholder="student classRoom">
+            <input id = "classRoomNameText"type="text" placeholder="student classRoom">
             <div class="prompt">parent phoneNumber</div>
-            <input type="number" placeholder="student parent phone Number">
+            <input id="parentPhoneNumber" type="number" placeholder="student parent phone Number">
             <div class="prompt">parent email</div>
-            <input type="text" placeholder="student parent email">
+            <input id="parentStudentEmail" type="text" placeholder="student parent email">
 
             <button id='submit-student'>SUBMIT</button>
         </div>
@@ -100,6 +106,10 @@
 
 
     
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="Model.js"></script>
+    <script src="Renderer.js"></script>
     <script src="main.js"></script>
+
 </body>
 </html>
