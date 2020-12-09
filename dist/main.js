@@ -1,7 +1,5 @@
-// let lat = position.coords.latitude;
-// let long = position.coords.longitude;
-// console.log(lat)
-// console.log(long)
+
+
 const mymap = L.map('mapid').setView([32.0853, 34.7818], 13);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaWFtYWxpYWJkZWxoYWkiLCJhIjoiY2tpZXYxZXpzMDhobjJ1cWt2bXA2ZjdwbSJ9.1PAlsL7vSMwXHpFFo5BKcA', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -64,6 +62,7 @@ function getStudentObject() {
         parentPhone,
         parentEmail
     }
+
 }
 
 function checkFullAttributes(obj) {
@@ -74,6 +73,28 @@ function checkFullAttributes(obj) {
     }
     return true
 }
+
+
+const addClass= function(){
+        $("#classInfo").css("display", "flex")
+}
+    
+
+
+const emergency= function(){
+    $("#emergencyInfo").empty().append(`<div class="info"  id="emergencyInfo">
+    <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
+    <button id='submit'>SUBMIT</button>`
+    )
+}  
+
+
+const switchdiv = function(){
+    $("#saveTrip").css("display","grid")
+    $("#addTrip").css("display","none")
+    
+}  
+
 
 function clearStudentFields() {
     $('#studentNameText').val("")
@@ -116,6 +137,7 @@ $('#sendbtn').on('click', function () {
         classRooms: []
     })
 
+  
 })
 
 let points = []
@@ -141,6 +163,21 @@ function setLocalStorageData(username, status) {
     localStorage.setItem('status', status)
 }
 
+
+var expanded = false;
+
+function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+}
+            
+
 $('#logInSubmit').on('click', async function () {
     const username = $('#user').val()
     const pass = $('#pass').val()
@@ -163,6 +200,7 @@ function checkLocalStorageData(){
         isLoggedIn :  localStorage.getItem('isLoggedIn')
     }
 }
+
 
 function loadThePage() {
     // userLoad from localStorage

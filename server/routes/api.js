@@ -9,11 +9,13 @@ const mongoose = require('mongoose')
 const uri = "mongodb+srv://AubidaNaalwa:Admin1234@cluster0.cvbqr.mongodb.net/MGapp?retryWrites=true&w=majority";
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 
+
 router.post('/class/asignClassroom', async function(req,res){
     const name = req.body.name
     const classRoom = new ClassRoom({name})
     classRoom.save()
     res.end()
+
 })
 
 router.post('/Emergency', async function(req,res){
