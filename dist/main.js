@@ -1,5 +1,6 @@
 
 
+
 const mymap = L.map('mapid').setView([32.0853, 34.7818], 13);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaWFtYWxpYWJkZWxoYWkiLCJhIjoiY2tpZXYxZXpzMDhobjJ1cWt2bXA2ZjdwbSJ9.1PAlsL7vSMwXHpFFo5BKcA', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -16,6 +17,28 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 const model = new Model()
 const renderer = new Renderer()
+
+
+const post = function(){
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+        const text = $('#postText').val()
+        var marker = L.marker([lat, long]).addTo(mymap);
+        marker.bindPopup(`<b>${text}</b>`).openPopup();
+    })
+}
+
+
+var popup = L.popup();
+
+        mymap.on('click', function(e){
+            popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+        });
+
 
 $('#classButton').on('click', async function () {
     const className = $('#className').val()
@@ -75,26 +98,70 @@ function checkFullAttributes(obj) {
 }
 
 
+let flagClass = 0
 const addClass= function(){
-        $("#classInfo").css("display", "flex")
+    if(flagClass == 0 )
+       {
+           renderer.addClass()
+           flagClass = 1   
+    }else {
+        renderer.hideAddClass()
+        flagClass = 0
+    }
 }
-    
 
+let flagStudent = 0
+const removeStudent= function(){
+    if(flagStudent == 0 )
+       {
+           renderer.removeStudent()
+           flagStudent = 1   
+    }else {
+        renderer.hideStudent()
+        flagStudent = 0
+    }
+}
 
+let flagEmergency = 0
 const emergency= function(){
-    $("#emergencyInfo").empty().append(`<div class="info"  id="emergencyInfo">
-    <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
-    <button id='submit'>SUBMIT</button>`
-    )
+    if(flagEmergency == 0 )
+       {
+           renderer.emergency()
+           flagEmergency = 1   
+    }else {
+        renderer.hideEmergency()
+        flagEmergency = 0
+    }
 }  
+
+
+
+let flagPost = 0
+const addPost = function(){
+    if(flagPost == 0 )
+       {
+           renderer.addPost()
+           flagPost = 1   
+    }else {
+        renderer.hidePost()
+        flagPost = 0
+    }
+}  
+
 
 
 const switchdiv = function(){
-    $("#saveTrip").css("display","grid")
-    $("#addTrip").css("display","none")
+    renderer.switchdiv()
     
 }  
 
+const hideAddClass = function(){
+    renderer.hideAddClass()
+}
+
+const hideEmergency = function(){
+    renderer.hideEmergency()
+}
 
 function clearStudentFields() {
     $('#studentNameText').val("")
@@ -142,7 +209,7 @@ $('#sendbtn').on('click', function () {
 
 let points = []
 let control;
-console.log(L.latLng(57.74, 11.94))
+// console.log(L.latLng(57.74, 11.94))
 mymap.on('click', function (e) {
     if (!clicakble) {
         return
