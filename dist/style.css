@@ -6,7 +6,6 @@
 }
 
 
-
 #mapid 
 {
 
@@ -20,7 +19,7 @@
 
 #options{
     display: grid;
-    grid-template-columns: 1fr fr;
+    grid-template-rows: repeat(7, 1fr);
     margin-top: 10px;
     font-size: 1vmax;
     border-radius: 4px;
@@ -28,6 +27,63 @@
     padding-left: 1vmax;
     transition: 0.4s;
 }
+
+.addClass{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.info{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 5px;
+}
+
+.inpt{
+    font-size:1.3em; 
+    padding:.5em;
+    margin-top: 20px;
+    border-radius: 3px;
+   
+}
+
+#submit{
+    cursor: pointer;
+    color: #ecf0f1;
+    background-color: #e74c3c;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    margin-top: 20px;
+
+}
+.add:hover{
+    color: wheat;
+    border-bottom: 1px solid white;
+
+}
+.add{
+    font-size: 20px;
+    font-weight: bold;
+    color: palevioletred;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+    border-bottom: 1px solid white;
+    transition: color 0.5s;
+}
+
+#options{
+    background-color: rgb(12, 28, 31);
+}
+
 
 
 @media only screen and (max-width: 600px) {
@@ -49,7 +105,3 @@
     border-color: rgb(54, 107, 54);
     box-shadow: 1px;
 }
-
-
-
-

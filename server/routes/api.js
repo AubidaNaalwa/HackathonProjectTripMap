@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost/TripDB", {useNewUrlParser: true, useUnifie
 
 router.get('/login', async (req, res) => {
     try{
-        res.send('haha');
+        res.sendFile('dist/logIn.html');
     } catch(error){
         res.send(error)
     }  

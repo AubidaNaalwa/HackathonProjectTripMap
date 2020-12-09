@@ -1,6 +1,4 @@
 
-
-
 const loadPage = function(){
     navigator.geolocation.getCurrentPosition(function(position) {
         let lat = position.coords.latitude;
@@ -91,7 +89,38 @@ const loadPage = function(){
 loadPage()
 
 
+const addClass= function(){
+        $("#classInfo").css("display", "flex")
+}
+    
 
 
+const emergency= function(){
+    $("#emergencyInfo").empty().append(`<div class="info"  id="emergencyInfo">
+    <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
+    <button id='submit'>SUBMIT</button>`
+    )
+}  
 
+
+const switchdiv = function(){
+    $("#saveTrip").css("display","grid")
+    $("#addTrip").css("display","none")
+    
+}  
+
+
+var expanded = false;
+
+function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+}
+            
 
