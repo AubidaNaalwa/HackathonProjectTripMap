@@ -34,7 +34,11 @@ class Model{
             return res
         })
     }
-
-
+    
+    async addNewPost(post, email){
+        return await $.post('/postText',{post, email},function(response){
+            return response
+        })
+    }
 
 }
