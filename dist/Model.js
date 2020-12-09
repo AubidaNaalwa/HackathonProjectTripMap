@@ -29,4 +29,12 @@ class Model{
         })
     }
 
+    async loadClassRooms(){
+        return await $.getclasses('/classRooms',function(res){
+            return res
+        })
+    }
+
+
+
 }
