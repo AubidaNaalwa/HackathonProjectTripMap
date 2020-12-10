@@ -1,5 +1,4 @@
 
-
 let points = []
 let control
 
@@ -35,18 +34,16 @@ async function loadThePage() {
 
 
 
-
-
 // Events
 
 // const model = new Model()
 // const renderer = new Renderer()
 
 
-const post = function(){
-        navigator.geolocation.getCurrentPosition(function(position) {
-            let lat = position.coords.latitude;
-            let long = position.coords.longitude;
+const post = function () {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
         const text = $('#postText').val()
         var marker = L.marker([lat, long]).addTo(mymap);
         marker.bindPopup(`<b>${text}</b>`).openPopup();
@@ -79,7 +76,7 @@ $('#emergencyButton').on('click', async function () {
         return
     }
     const trip = "" // get the field of the trip
-    model.emergencySituation(emergencyText,trip)
+    model.emergencySituation(emergencyText, trip)
     alert('emergency sent')
     $("#emergencyText").val("")
 })
@@ -117,67 +114,63 @@ function checkFullAttributes(obj) {
 
 
 let flagClass = 0
-const addClass= function(){
-    if(flagClass == 0 )
-       {
-           renderer.addClass()
-           flagClass = 1   
-    }else {
+const addClass = function () {
+    if (flagClass == 0) {
+        renderer.addClass()
+        flagClass = 1
+    } else {
         renderer.hideAddClass()
         flagClass = 0
     }
 }
 
 let flagStudent = 0
-const removeStudent= function(){
-    if(flagStudent == 0 )
-       {
-           renderer.removeStudent()
-           flagStudent = 1   
-    }else {
+const removeStudent = function () {
+    if (flagStudent == 0) {
+        renderer.removeStudent()
+        flagStudent = 1
+    } else {
         renderer.hideStudent()
         flagStudent = 0
     }
 }
 
 let flagEmergency = 0
-const emergency= function(){
-    if(flagEmergency == 0 )
-       {
-           renderer.emergency()
-           flagEmergency = 1   
-    }else {
+const emergency = function () {
+    if (flagEmergency == 0) {
+        renderer.emergency()
+        flagEmergency = 1
+    } else {
         renderer.hideEmergency()
         flagEmergency = 0
     }
-}  
+}
 
 
 
 let flagPost = 0
-const addPost = function(){
-    if(flagPost == 0 )
-       {
-           renderer.addPost()
-           flagPost = 1   
-    }else {
+const addPost = function () {
+    if (flagPost == 0) {
+        renderer.addPost()
+        flagPost = 1
+    } else {
         renderer.hidePost()
         flagPost = 0
     }
-}  
+}
 
 
 
-const switchdiv = function(){
+const switchdiv = function () {
     renderer.switchdiv()
-    
-}  
 
-const hideAddClass = function(){
+}
+
+const hideAddClass = function () {
     renderer.hideAddClass()
 }
 
-const hideEmergency = function(){
+const hideEmergency = function () {
     renderer.hideEmergency()
 }
 
@@ -224,7 +217,7 @@ $('#sendbtn').on('click', function () {
         classRooms: []
     })
 
-  
+
 })
 
 
@@ -252,7 +245,7 @@ $('#logInSubmit').on('click', async function () {
 })
 
 
-function checkLocalStorageData(){
+function checkLocalStorageData() {
     return {
         username :localStorage.getItem('username'),
         status :  localStorage.getItem('status'),
