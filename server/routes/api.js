@@ -65,7 +65,8 @@ router.post('/Student', function(req,res){
 })
 
 router.post('/trip', async function(req,res){
-    const trip =JSON.parse(req.body)
+    console.log(req.body)
+    const trip = req.body
     const classes = []
     for(let i of trip.classes){
         classes.push(

@@ -10,3 +10,5 @@ const addingPost = function(){
     console.log("adding post ")
     model.addNewPost(post)
 }
+
+

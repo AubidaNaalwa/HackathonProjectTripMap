@@ -75,13 +75,10 @@ console.log("submiting remove student ")
 }
 
 
-
-const newStudent = function(){
+$('#submitstd').on('click', function(){
     alert('haha')
     //adding the values from content.html to add new student
-    document.getElementById("newStudentForm").addEventListener("click", function(event){
-         //here add the saving student request 
-      });
+
       const name = $('#studentNameText').val()
       const id = $('#studentId').val()
       const age = $('#ageText').val()
@@ -95,7 +92,8 @@ const newStudent = function(){
       model.addStudentToDB(student)
 
     console.log("adding new student")
-}
+
+})
 
 const submitTrips = function(){
     //adding the values from saveTrip.html to the DB to create new trip

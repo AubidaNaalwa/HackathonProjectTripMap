@@ -38,9 +38,9 @@ async function addTripToDB(){
             classes: [],
             status: 0,
             teacher : localStorage.getItem('username'),
-            coordinates : JSON.parse(localStorage.getItem('wayPoints')).map(ele => ({lat : ele.lat,lng:ele.lon})),
             name :$('#tripNameText').val()
         }
+        trip.coordinates =JSON.parse(localStorage.getItem('wayPoints')).map(ele => ({lat : ele.latLng.lat,lng:ele.latLng.lng}))
     
         for(let i of classroomNames )
         {
@@ -50,6 +50,6 @@ async function addTripToDB(){
                 trip.classes.push(i.name)
             }
         }
-    
+        console.log(trip)
         await model.addNewTripToDb(trip)
 }
