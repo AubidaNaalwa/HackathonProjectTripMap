@@ -1,22 +1,46 @@
 
 
+let points = []
+let control
 
-const mymap = L.map('mapid').setView([32.0853, 34.7818], 13);
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaWFtYWxpYWJkZWxoYWkiLCJhIjoiY2tpZXYxZXpzMDhobjJ1cWt2bXA2ZjdwbSJ9.1PAlsL7vSMwXHpFFo5BKcA', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'your.mapbox.access.token'
-}).addTo(mymap);
+
+
+//refresh page 
+async function loadThePage() {
+
+     const loadingStatus = checkLocalStorageData()
+    
+     if(!loadingStatus.isLoggedIn){
+        renderer.loadLogInPage()
+        return
+     }
+     else{
+         if(loadingStatus.status == 0){ 
+            renderer.loadteacherPage()
+            const user = await  model.checkUser(loadingStatus.username)
+            loadPage([], user.trip.wayPoints) // todo
+            loadPage([], [])
+         }
+         else{
+             if(loadingStatus.status == 1){
+                renderer.loadstudentPage()
+                  // const user = await model.checkUser(loadingStatus.username)
+                // loadPage(user.posts, user.trip.coordinates)
+
+                loadPage([], [])
+            }
+        }
+    }
+}
+
+
 
 
 
 // Events
 
-const model = new Model()
-const renderer = new Renderer()
+// const model = new Model()
+// const renderer = new Renderer()
 
 
 const post = function(){
@@ -26,19 +50,14 @@ const post = function(){
         const text = $('#postText').val()
         var marker = L.marker([lat, long]).addTo(mymap);
         marker.bindPopup(`<b>${text}</b>`).openPopup();
+        let email = $('#mailStudentText').val()
+        let post = {lat, lon, text}
+        model.addNewPost(post, email)
     })
 }
-
-
 var popup = L.popup();
 
-        mymap.on('click', function(e){
-            popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(mymap);
-        });
-
+// console.log(L.latLng(57.74, 11.94))
 
 $('#classButton').on('click', async function () {
     const className = $('#className').val()
@@ -52,8 +71,7 @@ $('#classButton').on('click', async function () {
 
         return
     }
-}
-)
+})
 
 $('#emergencyButton').on('click', async function () {
     const emergencyText = $("#emergencyText").val()
@@ -186,8 +204,10 @@ $('#submit-student').on('click', async function () {
 
 let clicakble = 0;
 
-$('#addTrip').on('click', function () {
-    clicakble = 1;
+$('#options').on('click', '#addTrip',function () {
+
+        clicakble = 1;
+
 
 })
 
@@ -207,22 +227,7 @@ $('#sendbtn').on('click', function () {
   
 })
 
-let points = []
-let control;
-// console.log(L.latLng(57.74, 11.94))
-mymap.on('click', function (e) {
-    if (!clicakble) {
-        return
 
-    }
-    points.push(e.latlng)
-    if (control) {
-        mymap.removeControl(control);
-    }
-    control = L.Routing.control({
-        waypoints: points
-    }).addTo(mymap);
-})
 
 function setLocalStorageData(username, status) {
     localStorage.setItem('UserName', username)
@@ -230,20 +235,7 @@ function setLocalStorageData(username, status) {
     localStorage.setItem('status', status)
 }
 
-
-var expanded = false;
-
-function showCheckboxes() {
-    var checkboxes = document.getElementById("checkboxes");
-    if (!expanded) {
-        checkboxes.style.display = "block";
-        expanded = true;
-    } else {
-            checkboxes.style.display = "none";
-            expanded = false;
-        }
-}
-            
+      
 
 $('#logInSubmit').on('click', async function () {
     const username = $('#user').val()
@@ -262,23 +254,16 @@ $('#logInSubmit').on('click', async function () {
 
 function checkLocalStorageData(){
     return {
-        username :localStorage.getItem('UserName'),
+        username :localStorage.getItem('username'),
         status :  localStorage.getItem('status'),
         isLoggedIn :  localStorage.getItem('isLoggedIn')
     }
 }
 
 
-function loadThePage() {
-    // userLoad from localStorage
-    // load the map if he have a map on his name
-     const loadingStatus = checkLocalStorageData()
-     if(!loadingStatus.username || !loadingStatus.isLoggedIn){
-         // go to the logIn page
-         return
-     }
-     if(status){
-         // loadMap
-     }
-     // load main map with  logged in as a existing user
+const logOut = function()
+{
+    localStorage.clear();
 }
+
+

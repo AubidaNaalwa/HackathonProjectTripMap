@@ -1,32 +1,65 @@
 class Model{ 
+
     async asignNewClassRoomToDB(className){
-       return await  $.post('/class/asignClassroom',{name:className},function(response){
+       return  $.post('/class/asignClassroom',{name:className},function(response){
             return response
         })
     }
 
-    async emergencySituation(emergencyText,trip){
-        $.post('/Emergency',{text:emergencyText,trip},function(response){
+    async deleteTripFromDB(tripName, userName){
+        return  $.post('/tripdelete',{name :tripName, teacher:userName},function(response){
+            return response
+        })
+    }
+
+    async emergencySituation(emergencyText,tripName,userName){
+        return $.post('/sos',{emergencyText,tripName,userName},function(response){
             return response
         })
     }
     
     async addStudentToDB(student){ 
-        return $.post('/Student',{student},function(response){
+        return $.post('/Student',student,function(response){
             return response
         })
     }
 
-    async addNewTripToDb(Trip){
-        $.post('/Trip',{Trip},function(response){
+    async addNewTripToDb(trip){
+        return $.post('/trip',trip,function(response){
             return response
         })
     }
 
     async checkUser(user){
-        return await $.post('/user',{Trip},function(response){
+        return $.post(`/user`,user,function(response){
             return response
         })
     }
 
+    async loadClassRooms(){
+        return $.get('/classRooms',function(response){
+            return response
+        })
+    }
+
+    
+    async addTeacherToDb(teacher){
+        return $.post('/addteacher', teacher,function(response){
+            return response
+        })   
+    }
+
+    async addNewPost(post, email){
+        return  $.post('/postText',{post, email},function(response){
+            return response
+        })
+    }
+
+    async loadPosts(email){
+        return  $.get('/post',email,function(response){
+            return response
+        })
+    }
 }
+
+const model = new Model()

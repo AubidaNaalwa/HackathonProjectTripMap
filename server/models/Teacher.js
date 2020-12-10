@@ -7,9 +7,10 @@ const teacher = new Schema({
     phoneNumber:{type:String, required:true},
     email:{type:String, required:true},
     password:{type:String, required:true},
+
     age:{type:Number, required:true},
-    TripName:{type: Schema.Types.ObjectId, ref: 'Trip'},
-    access:{default: 0}
+    TripName:{type: Schema.Types.ObjectId, ref: 'trips'},
+    access:{typr:Number , default: 0}
     
 })
 

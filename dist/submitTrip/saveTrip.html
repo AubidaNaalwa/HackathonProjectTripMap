@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Save Trip</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+        integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw=="
+        crossorigin="anonymous"></script>
+
+		<!-- STYLE CSS -->
+        <link rel="stylesheet" href="../content.css">
+        
+		
+		
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="inner">
+				<form id="studentForm" action="">
+					<h3>Create Trip </h3>
+					<div class="form-row">
+						<div class="form-wrapper">
+							<label for="">Trip Name *</label>
+							<input type="text" id ="tripNameText"  class="form-control" placeholder="Trip Name" required>
+                        </div>
+                        <div class="form-wrapper">
+							<label for="">Admin *</label>
+							<input id= "teacherå" type="text" class="form-control"  placeholder="Admin Name" required>
+                        </div>			
+                            
+                    </div>
+
+					<div class="form-row">
+
+						<div class="form-wrapper">
+                            <label for="">Classrooms *</label>
+
+                                <div class="multiselect">
+                                  <div class="selectBox" onclick="showCheckboxes()" required>
+                                    <select>
+                                      <option>Select class</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+								  </div>
+								  
+
+                                  <div id="checkboxes">
+
+								
+                                  </div>
+                                </div>
+                        </div>
+                    
+        
+        
+                    </div>
+
+			
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> No one rejects, dislikes, or avoids pleasure itself.
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<button data-text="submit" id="submitTrip" onclick="addTripToDB()">
+						<span>SUBMIT</span>
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<script id="store-template" type="text/x-handlebars-template">
+			{{#each classroomNames}}
+				<div class='classRoom'>
+					<label for="one">
+						<input type="checkbox" class='messageCheckbox' id={{name}}>{{name}}</label>
+				</div>    
+			{{/each}}
+		</script>
+		
+
+
+		<!-- DATE-PICKER -->
+
+
+		<script src="../Model.js"></script>		
+        <script src="main.js"></script>
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

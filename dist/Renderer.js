@@ -1,6 +1,5 @@
 class Renderer{
 
-
     addClass(){
         $("#classInfo").css("display", "flex")
     }
@@ -38,5 +37,32 @@ class Renderer{
         $('#studentInfo').css("display","none")
     }
 
+    loadLogInPage(){
+        $('.login-wrap').css('display','block')
+        $('#teacher').css('display','none')
+        $('#options').empty()
+    }
     
+    loadstudentPage(){
+       
+        this.templateOptionRender(true)
+    }
+
+    loadteacherPage(){
+        this.templateOptionRender(false)
+    }
+
+    templateOptionRender(flag){
+        $('.login-wrap').css('display','none')
+        $('#teacher').css('display','grid')
+        const source = $('#options-template').html();
+        const template = Handlebars.compile(source);
+        let newHTML = template({flag});
+        $('#options').empty().append(newHTML);
+    }
+
+
 }
+
+
+const renderer = new Renderer()

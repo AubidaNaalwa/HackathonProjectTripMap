@@ -9,9 +9,9 @@ const trip = new Schema({
     }],
     teacher:{type: Schema.Types.ObjectId, ref: 'teachers'},
     classes:[{
-        type: Schema.Types.ObjectId, ref: 'Classrooms'
+        type: Schema.Types.ObjectId, ref: 'teachers'
     }],
-    status:{type:Number,default:0}
+    status:Number
 })
 
 const Trip = mongoose.model('Trips', trip) 

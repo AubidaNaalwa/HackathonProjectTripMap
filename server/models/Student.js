@@ -8,7 +8,8 @@ const student = new Schema({
     email:{type:String, required:true},
     password:{type:String, required:true},
     age:{type:Number, required:true},
-    classroom:{type: Schema.Types.ObjectId, ref: 'Classrooms'},
+    classroom:{type: Schema.Types.ObjectId, ref: 'classrooms'},
+    trip:{type: Schema.Types.ObjectId, ref: 'trips'},
     parentPhoneNumber:String,
     parentEmail:String,
     posts:[{
@@ -16,8 +17,7 @@ const student = new Schema({
         lng:Number,
         post:String
     }],
-    access:{default: 1}
-    
+    access:{type :Number ,default: 1}
 })
 
 const Student = mongoose.model('Students', student) 
