@@ -1,7 +1,4 @@
 
-let points = []
-let control
-
 
 
 //refresh page 

@@ -38,7 +38,7 @@ const submitTrips = function(){
     // alert("submiting Trip ")
 }
 
-const deleteTrip = function(){
+function dt(){
     //deleting name of trip from DB
     if (control) {
         mymap.removeControl(control);
@@ -97,23 +97,3 @@ const newStudent = function(){
     console.log("adding new student")
 }
 
-const submitTrips = function(){
-    //adding the values from saveTrip.html to the DB to create new trip
-    document.getElementById("studentForm").addEventListener("click", function(event){
-          event.preventDefault()
-      });
-      const name = $('#tripNameText').val()
-      const teacher = $('#teacherAdmin').val()
-      const coordinates = [[lat1,lon1],[lat2,lon2]]
-      const one = $('#one').val()
-      const two = $('#two').val()
-      const three = $('#three').val()
-      const classes=[one,two,three]
-      const trip = {name,teacher,coordinates}
-      
-      model.addNewTripToDb(trip)
-      model.loadClassRooms()
-    console.log("submiting Trip ")
-    
-    // alert("submiting Trip ")
-}

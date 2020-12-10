@@ -1,4 +1,8 @@
 let mymap
+let control
+let points = []
+
+
 function getPreciseLocation() {
     return new Promise(function (resolve, reject) {
       navigator.geolocation.getCurrentPosition(function (position) {
