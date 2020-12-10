@@ -136,7 +136,7 @@
             <div  onclick="emergency()">EMERGENCY</div>
             <div class="info"  id="emergencyInfo" style="display: none;">
                 <input type="text" class="inpt" id="emergencyText" placeholder="What's your emergency?">
-                <button id='submit'>SEND</button>
+                <button id='submit' onclick="submitEmergency()">SEND</button>
             </div>
         </div>
 
@@ -161,6 +161,11 @@
             </div>
 
         </div>
+
+        <div id="logOut" class="add">
+            <div id="end" onclick="logOut()">LOGOUT</div>
+        </div>
+     
 
         {{/if}}
     </script>

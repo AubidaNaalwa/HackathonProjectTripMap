@@ -127,16 +127,26 @@ router.post('/postText', async function(req,res){
     }) 
 })
 
-router.post('/sos', async function(req,res){
-    await (await Trip.findOne({name:req.body.tripName})).populate({path:"classes",
+router.post('/sos',  function(req,res){
+     Teacher.findOne({email:req.body.userName}).populate({path:"trips",
     populate:{
-        path:"students"
+        path:"classrooms",
+        populate:{
+            path:"students"
+        }
     }
 }).exec(function(err,data){
-    if(err)
-        res.send(err)  
-    else
-        res.send(data)  
+    if(err){
+        res.send(err)
+        return
+    }
+    res.end()
+    if(!data)
+        return
+    for(let j of data.TripName.classes){
+        for(let i of j.students)
+            mailSender(req.body.text , req.body.user, i.email)
+    }
 })
     
 })

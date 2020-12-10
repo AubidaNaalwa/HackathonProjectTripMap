@@ -12,8 +12,8 @@ class Model{
         })
     }
 
-    async emergencySituation(emergencyText,tripName,userName){
-        return $.post('/sos',{emergencyText,tripName,userName},function(response){
+    async emergencySituation(emergencyText, userName){
+        return await $.post('/sos',{emergencyText, userName},function(response){
             return response
         })
     }

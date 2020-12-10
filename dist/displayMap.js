@@ -1,4 +1,4 @@
-
+let mymap
 function getPreciseLocation() {
     return new Promise(function (resolve, reject) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -19,7 +19,7 @@ const loadPage = async function(pointsFromDB, wayPointsFromDB){
     console.log(lat)
     console.log(lon)
 
-    const mymap = L.map('mapid').setView([lat, lon], 13);
+    mymap = L.map('mapid').setView([lat, lon], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaWFtYWxpYWJkZWxoYWkiLCJhIjoiY2tpZXYxZXpzMDhobjJ1cWt2bXA2ZjdwbSJ9.1PAlsL7vSMwXHpFFo5BKcA', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,

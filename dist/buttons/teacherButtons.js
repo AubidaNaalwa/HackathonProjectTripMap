@@ -40,29 +40,29 @@ const submitTrips = function(){
 
 const deleteTrip = function(){
     //deleting name of trip from DB
-    control = L.Routing.control({
-        waypoints: []
-    }).addTo(mymap);
-    
-    alert("")
+    if (control) {
+        mymap.removeControl(control);
     }
+    alert("deleted trip")
+    
+}
 
 const submitEmergency = function(){
-    //send mail to parent about the emergency situation by taking the val of the input 
-    const emergencyText = $('#emergencyText').val()
-    if(emergencyText==''){
-        alert("Write A Emergency Situation")
+    const text = $('#emergencyText').val()
+    if(!text){
+        return
     }
-    else
-    model.emergencySituation(emergencyText)
+    const user = localStorage.getItem('username')
+    model.emergencySituation(text, user)
 
-    console.log("submit emergency situation")
 }
 
 const endTrip = function(){
     //send the parent email about ending the trip and update the status of the trip that done
     console.log("Ending Trip")
 }
+
+
 
 const submitRemoveStudent=function(){
 //removes the student from the DB by his name from the input val
@@ -73,6 +73,8 @@ if(text==''){
 else
 console.log("submiting remove student ")
 }
+
+
 
 const newStudent = function(){
     //adding the values from content.html to add new student

@@ -9,7 +9,7 @@ const trip = new Schema({
     }],
     teacher:{type: Schema.Types.ObjectId, ref: 'teachers'},
     classes:[{
-        type: Schema.Types.ObjectId, ref: 'teachers'
+        type: Schema.Types.ObjectId, ref: 'classrooms'
     }],
     status:Number
 })

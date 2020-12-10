@@ -257,6 +257,7 @@ function checkLocalStorageData() {
 const logOut = function()
 {
     localStorage.clear();
+    loadThePage()
 }
 
 
